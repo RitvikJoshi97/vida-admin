@@ -1,26 +1,155 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --background: #f9f8f4;
+    --foreground: #222323;
+    --panel: #ffffff;
+    --panel-muted: #edf5ef;
+    --panel-lavender: #eff0fe;
+    --panel-cyan: #ddf0fb;
+    --border: #dbdfdf;
+    --muted: #697c7f;
+    --sidebar: #003232;
+    --sidebar-deep: #324746;
+    --accent: #015b55;
+    --accent-soft: #2f7279;
+    --success: #2bba7e;
+    --warning: #f4bf73;
+    --magenta: #b62372;
+    --link: #4188e3;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --font-sans: var(--font-roboto);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-roboto), sans-serif;
+}
+
+@keyframes header-enter {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes header-exit {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+}
+
+.header-title-enter {
+    animation: header-enter 220ms ease-out;
+}
+
+.header-title-exit {
+    animation: header-exit 180ms ease-in;
+}
+
+@keyframes loader-exit {
+    from {
+        background-color: var(--sidebar);
+    }
+    to {
+        background-color: #ffffff;
+    }
+}
+
+.loader-enter {
+    animation: loader-enter 600ms ease-out;
+}
+
+.loader-exit {
+    animation: loader-exit 1800ms ease-out forwards;
+}
+
+@keyframes loader-enter {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes loader-content-enter {
+    from {
+        opacity: 0;
+        filter: blur(6px);
+    }
+    to {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes loader-content-exit {
+    from {
+        opacity: 1;
+        filter: blur(0);
+    }
+    to {
+        opacity: 0;
+        filter: blur(6px);
+    }
+}
+
+.loader-content-enter {
+    opacity: 0;
+    filter: blur(6px);
+    animation: loader-content-enter 520ms ease-out forwards;
+}
+
+.loader-content-exit {
+    animation: loader-content-exit 420ms ease-out forwards;
+}
+
+@keyframes page-reveal {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.page-reveal {
+    opacity: 1;
+    animation: page-reveal 720ms ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .header-title-enter,
+    .header-title-exit,
+    .loader-enter,
+    .loader-exit,
+    .loader-content-enter,
+    .loader-content-exit,
+    .page-reveal {
+        animation: none;
+    }
+    .loader-exit {
+        background-color: #ffffff;
+    }
+    .loader-content-exit {
+        opacity: 0;
+    }
+    .page-reveal {
+        opacity: 0;
+    }
 }

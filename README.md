@@ -19,13 +19,12 @@ Expectations:
 - Clean, responsive user interface which works on desktop and mobile viewports.
 - Consideration of the user experience for an admin who might be managing suggestions for dozens of employees
 
-## Thought process
 
 ### Who is the user?
-HR team 
+HR team
 
 ### Who was the system 'sold' to (helpful to understand sales pitch) 
-'regional director' - hints towards an experienced person. 
+'regional director'
 
 
 
@@ -61,16 +60,108 @@ Data received:
 ```
 
 
+## What are KPIs/items that can be used to measure 'ensure employees are reducing their risk based on suggestions made by VIDA'
+
+This is the most important part of any dashboard - what's the most important for the business? What is the utmost necessary?
+
+## Related to 'Adoption' and 'Follow through'
+### Suggestion completion rate
+
+'if high-risk employees aren’t completing, risk won’t fall.':
+How much of the recommended plan actually gets done.
+- Overall completion rate = completed / total suggestions
+- Completion rate by risk level (high/medium/low) = completed where employee.riskLevel=high / total where employee.riskLevel=high
+- Completion rate by type (equipment/exercise/behavioural/lifestyle) = completed where type=equipment / total where type=equipment
+
+
+### Time-to-action (speed)
+'How much time does it take':
+Whether people act quickly after VIDA identifies risk.
+- Median time to start (if you treat in_progress as “started”) = median(dateUpdated - dateCreated) for status in {"in_progress","completed"}
+- Median time to complete = median(dateCompleted - dateCreated) for status="completed"
+- % completed within SLA (you define SLAs by priority)
+  Example SLA: High=7 days, Medium=14, Low=30
+  % = completed within SLA / completed
+
+Why it matters: fast action reduces prolonged exposure and shows engagement.
+
+### Overdue burden (friction / risk persistence)
+
+Overdue items are where risk remains unmitigated:
+
+How much unresolved risk is hanging around.
+- Overdue rate = overdue / total
+- Overdue rate (high priority) = overdue where priority=high / total where priority=high
+- Overdue backlog per 100 employees = (count(overdue) / employee_count) * 100
+
+### Engagement depth (per-employee follow-through)
+MSK reduction is about fully addressing key risks, not partial completion:
+This stops a situation where “we completed a few easy ones” but high-risk users still have many open actions.
+
+For each employee:
+Open actions = count(status in {"pending","in_progress","overdue"})
+Completion ratio = completed / total for that employee
+
+Average priority-weighted completion
+Assign weights (High=3, Medium=2, Low=1):
+sum(weight(priority) for completed) / sum(weight(priority) for all)
+
+Then track:
+% of high-risk employees with 0 overdue items
+% of high-risk employees with all high-priority items completed
+
+## Related to 'Adoption' and 'Follow through'
+Suggestion mix and coverage
+Admin overrides
+Reopen/churn rate
+
+### Operational metrics (to run the program well)
+Department hotspots:
+- Overdue per department
+- High-risk share per department
+- Completion rate per department
+- Median time-to-complete per department
+
+This lets leaders target teams needing more support (budget, equipment procurement, manager coaching).
+
+
+## What are 'subtly important' features that are important to the user
+### Understanding the company's subscription and what they're missing out by not taking the more premium feature
+- 'number of employees who have signed up' 
+- 'plans that the employees are on'
+
+### Reliability metrics of VIDA 
+- SLA
+
+### Export data and API
+- necessary dashboard items export (for presentations etc)
+- full data export
+- partial data export
+
+- Full API integration
+
+### Data Privacy
+- RBAC
+- Row-level security 
+- Add/Remove admins
+- Augit logs
+- Data retention control (access 'acceptance' of people who have agreed to use the VIDA application)
+
+### Notification and reporting automation Centre
+- 'Report me these metrics to my mail every week'
+- Threshold alert - 'overdie high priority'
 
 ## Design
-KISS principle applied:
+KISS principle applied
 
-Design 
+Design - Keep it similar to the VIDA page.
 
 Login page
 Loader 
-Main admin page
-
+Admin page
+ - Dashboard
+ - Suggestions Page
+ - Settings
 
 
 ### Colour Pallete
@@ -102,3 +193,31 @@ Optional: logo accent tones (top-left mark)
 Red: #B3071A
 Orange: #DB972B
 Teal: #4DC0BD
+
+FontType: Roboto
+
+### Navigation / structure
+
+Sidebar:
+- Dark teal sidebar with:
+- Brand mark at top (check 'ritvikDesignLogo.svg' in the public folder)
+- Grouped nav (“TEAM” / “PERSONAL”)
+
+Simple line icons:
+- Active/selected state uses brighter teal and/or a subtle highlight.
+- Top bar / utilities
+- Top-right icons: bell (notifications) + avatar/profile.
+- These are minimal and unobtrusive.
+
+Cards & surfaces:
+- Cards are white on an off-white background.
+- Rounded corners (feels like ~12–16px radius).
+- Subtle borders (#DBDFDF range) and very soft shadows (or sometimes no shadow + border).
+
+Buttons & controls:
+Buttons are pill-shaped / rounded.
+
+Visual style:
+- Some look like outlined pills with teal border + teal text (“Send invites”).
+- Some are more link-like (“Assess yourself”) with lighter emphasis.
+- There’s a consistent “low aggression” CTA approach — nothing screams “click me now.”
