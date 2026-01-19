@@ -2,7 +2,7 @@
 
 
 
-## General Information (for Ritvik's own context)
+## Project Brief & Objectives
 
 Task:
 Build a dashboard page that allows admins to manage employee suggestions more effectively, helping drive the engagement.
@@ -20,8 +20,26 @@ Expectations:
 - Consideration of the user experience for an admin who might be managing suggestions for dozens of employees
 
 
+## How to run the project
+
+Please ensure git and npm are installed on your system.
+
+```bash
+git clone https://github.com/RitvikJoshi97/vida-admin.git
+
+cd vida-admin
+
+npm i
+
+npm run dev
+```
+
+This project is just for demonstration purposes which does not utilise the actual VIDA platform, backend services or a database and uses direct manipulation of a JSON file.
+
+
+
 ### Who is the user?
-HR team
+HR Representatives
 
 ### Who was the system 'sold' to (helpful to understand sales pitch) 
 'regional director'
@@ -59,8 +77,8 @@ Data received:
 }
 ```
 
-
-## What are KPIs/items that can be used to measure 'ensure employees are reducing their risk based on suggestions made by VIDA'
+## Understanding what the users care about
+### What are KPIs/items that can be used to measure 'ensure employees are reducing their risk based on suggestions made by VIDA'
 
 This is the most important part of any dashboard - what's the most important for the business? What is the utmost necessary?
 
@@ -126,21 +144,13 @@ This lets leaders target teams needing more support (budget, equipment procureme
 
 
 ## What are 'subtly important' features that are important to the user
-### Understanding the company's subscription and what they're missing out by not taking the more premium feature
-- 'number of employees who have signed up' 
-- 'plans that the employees are on'
-
-### Reliability metrics of VIDA 
-- SLA
 
 ### Export data and API
 - necessary dashboard items export (for presentations etc)
 - full data export
 - partial data export
 
-- Full API integration
-
-### Data Privacy
+### Data Privacy (Beyond the scope of this demo project)
 - RBAC
 - Row-level security 
 - Add/Remove admins
@@ -151,17 +161,18 @@ This lets leaders target teams needing more support (budget, equipment procureme
 - 'Report me these metrics to my mail every week'
 - Threshold alert - 'overdie high priority'
 
-## Design
-KISS principle applied
-
-Design - Keep it similar to the VIDA page.
-
+## Architecture and hierarchy
 Login page
 Loader 
 Admin page
  - Dashboard
  - Suggestions Page
  - Settings
+
+## Design Principles
+KISS principle applied
+
+Design - Keep it similar to the VIDA page.
 
 
 ### Colour Pallete
