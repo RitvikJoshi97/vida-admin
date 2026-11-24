@@ -1,8 +1,61 @@
-# vida-admin
+# VIDA Admin
 
+An admin dashboard that helps HR and health-and-safety teams follow up on VIDA's desk and wellbeing
+suggestions, so employees actually act on them and musculoskeletal (MSK) risk goes down. Built with
+Next.js, React, TypeScript and Tailwind CSS, with an animated [Rive](https://rive.app) character.
 
+Built as a take-home assessment.
 
-## Project Brief & Objectives
+![Walkthrough](docs/screenshots/walkthrough.gif)
+
+## Screenshots
+
+| Dashboard | KPI breakdown |
+|---|---|
+| ![Dashboard](docs/screenshots/dashboard.png) | ![KPI breakdown](docs/screenshots/dashboard-detail.png) |
+| **Suggestions** | **Employee suggestions** |
+| ![Suggestions](docs/screenshots/suggestions.png) | ![Employee suggestions](docs/screenshots/suggestion-detail.png) |
+| **Login** | **Settings** |
+| ![Login](docs/screenshots/login.png) | ![Settings](docs/screenshots/settings.png) |
+
+<p align="center">
+  <img src="docs/screenshots/mobile-dashboard.png" alt="Mobile dashboard" width="260">
+  &nbsp;&nbsp;
+  <img src="docs/screenshots/mobile-suggestions.png" alt="Mobile suggestions" width="260">
+</p>
+
+## Features
+
+- **Dashboard of programme KPIs:** adoption (completion rate), time to action, overdue burden and
+  engagement depth, each with a breakdown and the formula behind it
+- **Overdue suggestions** surfaced first, so the riskiest items get attention
+- **Suggestions by employee:** search, sort, and filter by priority and status, then expand an
+  employee to see every suggestion with its history and notes
+- **Manage suggestions:** change status, add or edit notes, and create custom suggestions for an
+  employee with a category and priority
+- **Settings:** default priority, SLA days per priority (used to flag overdue items) and
+  notification preferences
+- **Responsive:** works on desktop and mobile
+- **Login and loader** with an animated Rive character
+
+## Run it
+
+Requires Node.js 20 or later.
+
+```bash
+git clone https://github.com/RitvikJoshi97/vida-admin.git
+cd vida-admin
+npm install
+npm run dev
+```
+
+Open http://localhost:3000 and sign in with **admin** / **password**.
+
+This is a demonstration project. It does not use the real VIDA platform, backend services or a
+database. Data comes from `public/sample_data.json`, and changes are written back to that file
+through the Next.js API routes in `src/app/api/suggestions`.
+
+## The brief
 
 Task:
 Build a dashboard page that allows admins to manage employee suggestions more effectively, helping drive the engagement.
@@ -19,24 +72,7 @@ Expectations:
 - Clean, responsive user interface which works on desktop and mobile viewports.
 - Consideration of the user experience for an admin who might be managing suggestions for dozens of employees
 
-
-## How to run the project
-
-Please ensure git and npm are installed on your system.
-
-```bash
-git clone https://github.com/RitvikJoshi97/vida-admin.git
-
-cd vida-admin
-
-npm i
-
-npm run dev
-```
-
-This project is just for demonstration purposes which does not utilise the actual VIDA platform, backend services or a database and uses direct manipulation of a JSON file.
-
-
+## Design notes
 
 ### Who is the user?
 HR Representatives
