@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type {
   EmployeeWithSuggestions,
@@ -107,7 +107,16 @@ const defaultFormData: SuggestionFormData = {
   notes: "",
 };
 
+// useSearchParams needs a Suspense boundary for `next build` to prerender this page.
 export default function SuggestionsPage() {
+  return (
+    <Suspense fallback={null}>
+      <SuggestionsPageContent />
+    </Suspense>
+  );
+}
+
+function SuggestionsPageContent() {
   const searchParams = useSearchParams();
   const [employees, setEmployees] = useState<EmployeeWithSuggestions[]>([]);
   const [isLoading, setIsLoading] = useState(true);
